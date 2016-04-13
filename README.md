@@ -88,3 +88,8 @@ runner { 'testrunner':
   tags         => 'dockerrunner',
 }
 ```
+
+## Disclaimer
+
+This module is far from complete and under development.
+Feel free to contribute!
