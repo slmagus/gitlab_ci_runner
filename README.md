@@ -23,6 +23,12 @@ Operating systems:
 
 ===
 
+# Limitations
+
+The cirunner type is limited to the following executors:
+* shell
+* docker
+
 # Parameters
 
 
