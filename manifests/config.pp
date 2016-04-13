@@ -1,6 +1,12 @@
 # == Class: cirunner::config
 #
-class cirunner::config {
+class cirunner::config(
+  String $url          = undef,
+  String $token        = undef,
+  String $executor     = shell,
+  String $docker_image = undef,
+  Array  $tags         = undef
+){
 
   runner { 'testrunner':
     ensure       => present,
