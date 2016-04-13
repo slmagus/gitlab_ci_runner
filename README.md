@@ -31,12 +31,60 @@ The cirunner type is limited to the following executors:
 
 # Parameters
 
-
-parameter
+manage_repo
 -----------
-Paramter description
+Manages the Gitlab CI runner YUM repository
 
-- *Default*: false
+- *Default*: true
+
+install_package
+-----------
+Manages the Gitlab CI package installation
+
+- *Default*: true
+
+# Parameters for cirunner type
+
+url
+-----------
+The Gitlab CI url
+
+- *Default*: undef
+
+token
+-----------
+The Gitlab CI registration token
+
+- *Default*: undef
+
+executor
+-----------
+The CI runner executor (shell, docker)
+
+- *Default*: 'shell'
+
+docker_image
+-----------
+The docker image used by the docker executor
+
+- *Default*: undef
+
+tags
+-----------
+The runner tags (Used to choose witch runner to use at build time)
+
+- *Default*: undef
+
 
 ## Sample usage:
-Sample usage
+
+``` Puppet
+runner { 'testrunner':
+  ensure       => present,
+  url          => 'http://<gitlab.url>/ci',
+  token        => '<TOKEN>',
+  executor     => 'docker',
+  docker_image => 'centos/latest',
+  tags         => 'dockerrunner',
+}
+```
