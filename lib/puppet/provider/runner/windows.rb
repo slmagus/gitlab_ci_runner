@@ -1,6 +1,6 @@
 Puppet::Type.type(:runner).provide(:runner) do
   confine :osfamily => :windows
-  commands :gitlab_runner => 'C:\tmp\gitlab-ci-multi-runner-amd64.exe'
+  commands :gitlab_runner => 'C:\\tmp\\gitlab-ci-multi-runner-windows-amd64.exe'
 
   def exists?
     begin
