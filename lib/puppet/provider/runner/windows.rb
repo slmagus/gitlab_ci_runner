@@ -1,6 +1,6 @@
 Puppet::Type.type(:runner).provide(:runner) do
   confine :osfamily => :windows
-  commands :gitlab_runner => 'c:/tmp/gitlab-ci-multi-runner-amd64.exe'
+  commands :gitlab_runner => 'C:\tmp\gitlab-ci-multi-runner-amd64.exe'
 
   def exists?
     begin
@@ -25,9 +25,9 @@ Puppet::Type.type(:runner).provide(:runner) do
     begin
       #gitlab_runner('register', '--non-interactive', '--url ', resource[:url], '--registration-token', resource[:token])
       if @resource[:executor] == 'docker'
-        cmd = "c:/\tmp/\gitlab-ci-multi-runner-amd64.exe register --non-interactive --name #{@resource[:name]} --url #{@resource[:url]} --registration-token #{@resource[:token]} --executor  #{@resource[:executor]} --docker-image #{@resource[:docker_image]} --tag-list #{@resource[:tags]}"
+        cmd = "C:\tmp\gitlab-ci-multi-runner-amd64.exe register --non-interactive --name #{@resource[:name]} --url #{@resource[:url]} --registration-token #{@resource[:token]} --executor  #{@resource[:executor]} --docker-image #{@resource[:docker_image]} --tag-list #{@resource[:tags]}"
       else
-        cmd = "c:/\tmp/\gitlab-ci-multi-runner-amd64.exe register --non-interactive --name #{@resource[:name]} --url #{@resource[:url]} --registration-token #{@resource[:token]} --executor  #{@resource[:executor]} --tag-list #{@resource[:tags]} "
+        cmd = "C:\tmp\gitlab-ci-multi-runner-amd64.exe register --non-interactive --name #{@resource[:name]} --url #{@resource[:url]} --registration-token #{@resource[:token]} --executor  #{@resource[:executor]} --tag-list #{@resource[:tags]} "
       end
       #Puppet.notice("Running command to create runner: #{cmd}")
       Open3.popen2(cmd) do |stdin, stderr,  wait_thr|
@@ -59,7 +59,7 @@ Puppet::Type.type(:runner).provide(:runner) do
       if runner == runner_to_delete[0]
         runner_token = runner_to_delete[1]
         runner_url = runner_to_delete[3]
-        cmd = "c:/\tmp/\gitlab-ci-multi-runner-amd64.exe unregister --url #{runner_url} --token #{runner_token}"
+        cmd = "C:\tmp\gitlab-ci-multi-runner-amd64.exe unregister --url #{runner_url} --token #{runner_token}"
         Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
           while line = stderr.gets
             p "deleting: #{runner_token}"
@@ -72,7 +72,7 @@ Puppet::Type.type(:runner).provide(:runner) do
 
   def verify_runner(token)
     thetoken = nil
-    cmd = "c:/\tmp/\gitlab-ci-multi-runner-amd64.exe verify"
+    cmd = "C:\tmp\gitlab-ci-multi-runner-amd64.exe verify"
     Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
       while line = stderr.gets
         if line.to_s.match(/#{token}/)
@@ -92,7 +92,7 @@ Puppet::Type.type(:runner).provide(:runner) do
   def get_runners
     runner_list = []
     runner_entry = []
-    cmd = "c:/\tmp/\gitlab-ci-multi-runner-amd64.exe list"
+    cmd = "C:\tmp\gitlab-ci-multi-runner-amd64.exe list"
     Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
       while line = stderr.gets
           x = line.split()
