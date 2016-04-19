@@ -1,12 +1,12 @@
-# == Class: cirunner
+# == Class: gitlab_ci_runner
 #
-class cirunner (
+class gitlab_ci_runner (
   $manage_repo = true,
   $install_package = true,
   ){
 
-    class { '::cirunner::install': } ->
-    class { '::cirunner::config': } ~>
-    class { '::cirunner::service': } ->
-    Class['::cirunner']
+    class { '::gitlab_ci_runner::install': } ->
+    class { '::gitlab_ci_runner::config': } ~>
+    class { '::gitlab_ci_runner::service': } ->
+    Class['::gitlab_ci_runner']
 }

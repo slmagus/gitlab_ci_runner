@@ -1,10 +1,10 @@
-# == Class: cirunner::install
+# == Class: gitlab_ci_runner::install
 #
-class cirunner::install::linux {
+class gitlab_ci_runner::install::linux {
 
   case $::kernel {
-    'Linux':  { include ::cirunner::install::linux }
-    'windows': { include ::cirunner::install::windows }
+    'Linux':  { include ::gitlab_ci_runner::install::linux }
+    'windows': { include ::gitlab_ci_runner::install::windows }
     default: { error("Operatingsystem $::{'operatingsystem'} is not supported.") }
   }
 

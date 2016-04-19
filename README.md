@@ -1,9 +1,9 @@
-[![Build Status](https://api.travis-ci.org/bazzie/cirunner.svg?branch=master)]
-# cirunner
+![Build Status(https://api.travis-ci.org/bazzie/cirunner.svg?branch=master)]
+# gitlab_ci_runner
 
 Manage config and installation of Gitlab CI runner
 
-This module may be used with a simple `include ::cirunner`
+This module may be used with a simple `include ::gitlab_ci_runner`
 
 ===
 

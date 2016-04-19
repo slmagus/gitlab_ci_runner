@@ -1,6 +1,6 @@
-# == Class: cirunner::service
+# == Class: gitlab_ci_runner::service
 #
-class cirunner::service {
+class gitlab_ci_runner::service {
 
   service { 'gitlab-runner':
     ensure => running,

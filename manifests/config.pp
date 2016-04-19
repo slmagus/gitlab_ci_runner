@@ -1,6 +1,6 @@
 # == Class: cirunner::config
 #
-class cirunner::config(
+class gitlab_ci_runner::config(
   String $url          = undef,
   String $token        = undef,
   String $executor     = shell,

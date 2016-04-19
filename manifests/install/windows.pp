@@ -1,6 +1,6 @@
-# == Class: cirunner::install
+# == Class: cirunner::install::windows
 #
-class cirunner::install::windows (
+class gitlab_ci_runner::install::windows (
   $url = 'https://gitlab-ci-multi-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-ci-multi-runner-windows-amd64.exe',
   $install_dir = 'C:\GitlabRunner'
 ){
