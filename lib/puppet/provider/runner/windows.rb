@@ -110,5 +110,28 @@ Puppet::Type.type(:runner).provide(:runner) do
     return runner_list[1..runner_list.length]
   end
 
+  def check_service
+    result = ""
+    cmd = "c:\\tmp\\gitlab-ci-multi-runner-windows-amd64 status"
+    Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
+      while line = stderr.gets
+        x = line.split()
+        if x[5].to_s == "not" and x[6] == "exist"
+          result = "not_installed"
+        elsif x[3].to_s == "not" and x[4] == "running."
+          result = "stopped"
+        end
+      end
+      if stdout.gets
+        result = "running"
+      end
+      return result
+    end
+  end
+
+
+
+
+
 
 end

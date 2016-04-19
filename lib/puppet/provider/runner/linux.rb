@@ -50,8 +50,6 @@ Puppet::Type.type(:runner).provide(:runner) do
     unregister_runner(resource[:name])
   end
 
-  #def register_runner(name, executor, url, tags, shell, ssh_user, ssh_password, ssh_host, ssh_port, )
-
 
   def unregister_runner(runner)
     thetoken = nil
@@ -109,6 +107,25 @@ Puppet::Type.type(:runner).provide(:runner) do
       end
     end
     return runner_list[1..runner_list.length]
+  end
+
+  def check_service
+    result = ""
+    cmd = "gitlab-runner status"
+    Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
+      while line = stderr.gets
+        x = line.split()
+        if x[3].to_s == "not" and x[4] == "installed."
+          result = "not_installed"
+        elsif x[3].to_s == "not" and x[4] == "running."
+          result = "stopped"
+        end
+      end
+      if stdout.gets
+        result = "running"
+      end
+      return result
+    end
   end
 
 
