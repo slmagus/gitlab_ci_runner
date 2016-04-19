@@ -1,0 +1,12 @@
+{
+  "Gemfile": "312781b187b0112a0c77990b37570f5f",
+  "README.md": "929b5593e61b039643ad93eecdcb53c9",
+  "Rakefile": "d1058c019a7a2aeb70bea060938f6cc9",
+  "lib/puppet/provider/runner/runner.rb": "ad1dbc06b0769817d16f66735aae9257",
+  "lib/puppet/type/runner.rb": "3e10c329cebc7dfd045484d6bf717f94",
+  "manifests/config.pp": "8b957420e94e3cc7d73cbeb9babd5be9",
+  "manifests/init.pp": "36e634950e6b77a2290026f11634fa1c",
+  "manifests/install.pp": "ad29f841659428f41ae34c1416efdb4b",
+  "manifests/service.pp": "27f309a1e35d1a1ee75c5185f4a5e0cf",
+  "metadata.json": "e8fe8884a15ab6a10c8816fee86a088f"
+}

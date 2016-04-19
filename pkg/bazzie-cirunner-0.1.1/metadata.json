@@ -1,12 +1,16 @@
 {
   "name": "bazzie-cirunner",
-  "version": "0.1.2,
+  "version": "0.1.1",
   "author": "bazzie",
   "summary": "Manages install and config of the Gitlab CI runner",
   "license": "Apache-2.0",
   "source": "git://github.com/bazzie/cirunner.git",
   "project_page": "https://github.com/bazzie/cirunner",
   "issues_url": "https://github.com/bazzie/cirunner/issues",
+  "dependencies": [
+    {"name":"puppetlabs/stdlib","version_requirement":">= 4.6.0 < 6.0.0"}
+  ],
+  "data_provider": null,
   "requirements": [
     {
       "name": "pe",
@@ -41,8 +45,5 @@
       ]
     }
   ],
-  "description": "Manage Gitlab CI runner",
-  "dependencies": [
-    {"name":"puppetlabs/stdlib","version_requirement":">= 4.6.0 < 6.0.0"}
-  ]
+  "description": "Manage Gitlab CI runner"
 }
