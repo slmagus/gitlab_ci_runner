@@ -21,12 +21,18 @@ versions 4.x with Ruby versions 1.9.3, 2.0.0 and 2.1.0.
 
 Operating systems:
 * EL 7
+* Microsoft Windows 2012(R2)
 
 ===
 
+# Dependencies
+
+* pupeptlabs/stdlib
+* puppetlabs/dsc
+
 # Limitations
 
-The cirunner type is limited to the following executors:
+The Linux cirunner type is limited to the following executors:
 * shell
 * docker
 
@@ -60,13 +66,13 @@ The Gitlab CI registration token
 
 executor
 -----------
-The CI runner executor (shell, docker)
+The CI runner executor (shell (windows/linux), docker(linux only))
 
 - *Default*: 'shell'
 
 docker_image
 -----------
-The docker image used by the docker executor
+The docker image used by the docker executor (Linux only)
 
 - *Default*: undef
 
@@ -92,5 +98,5 @@ runner { 'testrunner':
 
 ## Disclaimer
 
-This module is far from complete and under development.
-Feel free to contribute!
+This module is far from complete and under heavy development.
+Feel free to comment or contribute!
