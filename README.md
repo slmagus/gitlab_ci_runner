@@ -1,4 +1,4 @@
-![Build Status(https://api.travis-ci.org/bazzie/cirunner.svg?branch=master)]
+[![Build Status](https://travis-ci.org/bazzie/gitlab_ci_runner.svg?branch=master)](https://travis-ci.org/bazzie/gitlab_ci_runner)
 # gitlab_ci_runner
 
 Manage config and installation of Gitlab CI runner
