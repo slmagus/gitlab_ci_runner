@@ -1,4 +1,7 @@
 [![Build Status](https://travis-ci.org/bazzie/gitlab_ci_runner.svg?branch=master)](https://travis-ci.org/bazzie/gitlab_ci_runner)
+[![Puppet Forge](https://img.shields.io/puppetforge/e/bazzie/gitlab_ci_runner.svg)](https://forge.puppetlabs.com/bazzie/gitlab_ci_runner)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/bazzie/gitlab_ci_runner.svg)](https://forge.puppetlabs.com/bazzie/gitlab_ci_runner)
+[![Puppet Forge](https://img.shields.io/puppetforge/f/bazzie/gitlab_ci_runner.svg)](https://forge.puppetlabs.com/bazzie/gitlab_ci_runner)
 
 # gitlab_ci_runner
 
