@@ -8,6 +8,9 @@ Puppet::Type.type(:runner).provide(:runner) do
       runners.each do |runner|
         if resource[:name] == runner[0]
           if verify_runner(runner[2]) == true
+            if check_service == "not_installed"
+              install_service()
+            end 
             return true
             break
           end
@@ -18,8 +21,6 @@ Puppet::Type.type(:runner).provide(:runner) do
       fail("Error getting runner")
     end
   end
-
-
 
   def create
     begin
@@ -32,11 +33,15 @@ Puppet::Type.type(:runner).provide(:runner) do
       #Puppet.notice("Running command to create runner: #{cmd}")
       Open3.popen2(cmd) do |stdin, stderr,  wait_thr|
         return_value = wait_thr.value
+  
         if return_value.exitstatus > 0
           #Puppet.notice(return_value.exitstatus)
           #Puppet.notice(stderr.read)
           fail("Cannot create runner #{@resource[:name]}")
           break
+        end
+        if check_service == "not_installed" 
+          install_service()
         end
       end
     rescue Puppet::ExecutionFailure => e
@@ -48,9 +53,6 @@ Puppet::Type.type(:runner).provide(:runner) do
   def destroy
     unregister_runner(resource[:name])
   end
-
-  #def register_runner(name, executor, url, tags, shell, ssh_user, ssh_password, ssh_host, ssh_port, )
-
 
   def unregister_runner(runner)
     thetoken = nil
@@ -129,9 +131,15 @@ Puppet::Type.type(:runner).provide(:runner) do
     end
   end
 
-
-
-
-
+  def install_service
+    cmd = "c:\\tmp\\gitlab-ci-multi-runner-windows-amd64 install"
+    Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
+      while line = stderr.gets
+        if line
+          p line
+        end
+      end
+    end
+  end
 
 end

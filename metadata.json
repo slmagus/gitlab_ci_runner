@@ -1,6 +1,6 @@
 {
   "name": "bazzie-gitlab_ci_runner",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "bazzie",
   "summary": "Manages install and config of the Gitlab CI runner",
   "license": "Apache-2.0",
