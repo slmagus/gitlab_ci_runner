@@ -140,6 +140,7 @@ Puppet::Type.type(:runner).provide(:runner) do
         end
       end
     end
+    p "Service installed"
   end
 
 end
