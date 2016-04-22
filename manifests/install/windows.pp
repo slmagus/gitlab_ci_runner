@@ -2,7 +2,7 @@
 #
 class gitlab_ci_runner::install::windows (
   $url = 'https://gitlab-ci-multi-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-ci-multi-runner-windows-amd64.exe',
-  $install_folder = 'C:\GitlabRunner'
+  $install_dir = 'C:\GitlabRunner'
 ){
 
   dsc_file {'install_folder':
