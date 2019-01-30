@@ -1,10 +1,12 @@
 # == Class: gitlab_ci_runner::install::linux
 #
 class gitlab_ci_runner::install::linux (
-  $baseurl = "https://packages.gitlab.com/runner/gitlab-ci-multi-runner/el/${::os['release']['major']}/${::os['architecture']}",
-  $gpgkey = 'https://packages.gitlab.com/runner/gitlab-ci-multi-runner/gpgkey',
-  $sslcacert = '/etc/pki/tls/certs/ca-bundle.crt',
-  $version = '1.1.2-1',
+  String $baseurl        = "https://packages.gitlab.com/runner/gitlab-ci-multi-runner/el/${::os['release']['major']}/${::os['architecture']}",
+  String $gpgkey         = 'https://packages.gitlab.com/runner/gitlab-ci-multi-runner/gpgkey',
+  String $sslcacert      = '/etc/pki/tls/certs/ca-bundle.crt',
+  String $version        = '1.1.2-1',
+  String $package_ensure = installed,
+  String $package_name   = 'gitlab-runner',
 ){
 
 if $manage_repo {
