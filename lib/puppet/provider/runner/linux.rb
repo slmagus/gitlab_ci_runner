@@ -34,7 +34,7 @@ Puppet::Type.type(:runner).provide(:runner) do
         cmd = "gitlab-runner register --non-interactive --name #{@resource[:name]} --url #{@resource[:url]}
         --registration-token #{@resource[:token]} --executor  #{@resource[:executor]} --tag-list #{@resource[:tags]} "
       end
-      #Puppet.notice("Running command to create runner: #{cmd}")
+      Puppet.debug("Running command to create runner: #{cmd}")
       Open3.popen2(cmd) do |stdin, stderr,  wait_thr|
         return_value = wait_thr.value
         if return_value.exitstatus > 0

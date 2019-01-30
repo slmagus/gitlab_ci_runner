@@ -10,10 +10,10 @@ class gitlab_ci_runner::config(
 
     runner { 'testrunner':
       ensure       => present,
-      url          => 'http://gitlab.nextworking.nl/ci',
-      token        => 'iHbAMyeS1AVsDWvbMH4M',
+      url          => 'https://gitlab.rsma.frb.gov',
+      token        => 'asdf',
       executor     => 'docker',
-      docker_image => 'centos',
+      docker_image => 'docker:lastest',
       tags         => 'dockerrunner',
     }
 
