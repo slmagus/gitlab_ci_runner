@@ -43,13 +43,13 @@ Puppet::Type.newtype(:runner) do
 
   newparam(:privileged) do
   desc 'Give extended privileges to container'
-  newvalue(:true, :false)
+  newvalues(:true, :false)
   end
 
   newparam(:volumes) do
   desc 'Bind mount volumes'
     validate do |value|
-      unless value =~ (\/.+:\/.+)/*
+      unless value =~ /(\/.+:\/.+)*/
         raise ArgumentError, "%s is not a valid volume" % value
       end
     end

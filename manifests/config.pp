@@ -4,7 +4,7 @@ class gitlab_ci_runner::config(
   String $url          = undef,
   String $token        = undef,
   String $executor     = shell,
-  String $docker_image = undef,
+  [Optional]String $docker_image = undef,
   Array  $tags         = undef
 ){
 
