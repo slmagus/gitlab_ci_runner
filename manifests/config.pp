@@ -10,7 +10,7 @@ class gitlab_ci_runner::config(
 
     runner { 'testrunner':
       ensure       => present,
-      url          => 'https://gitlab.rsma.frb.gov',
+      url          => 'https://gitlab.com',
       token        => 'asdf',
       executor     => 'docker',
       docker_image => 'docker:lastest',
