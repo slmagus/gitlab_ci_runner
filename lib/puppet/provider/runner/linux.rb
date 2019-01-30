@@ -1,5 +1,5 @@
 Puppet::Type.type(:runner).provide(:runner) do
-  confine :osfamily => [:redhat, :Debian]
+  confine :osfamily => [:redhat, :Debian, :windows]
   defaultfor :osfamily => :redhat
   commands :gitlab_runner => 'gitlab-runner'
 
