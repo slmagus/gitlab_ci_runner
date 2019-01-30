@@ -7,30 +7,61 @@ class gitlab_ci_runner::install::linux (
   $version = '1.1.2-1',
 ){
 
-  if $::os['family'] == 'RedHat' {
+if $manage_repo {
+    $repo_base_url = 'https://packages.gitlab.com'
 
-    if $::gitlab_ci_runner::manage_repo == true {
-      yumrepo { 'runner_gitlab-ci-multi-runner':
-        baseurl   => $baseurl,
-        descr     => 'Gitlab CI Multirunner repo',
-        enabled   => '1',
-        gpgcheck  => '0',
-        gpgkey    => $gpgkey,
-        sslverify => 1,
-        sslcacert => $sslcacert,
+    case $::osfamily {
+      'Debian': {
+
+        apt::source { 'apt_gitlabci':
+          comment  => 'GitlabCI Runner Repo',
+          location => "${repo_base_url}/runner/${package_name}/${::lsbdistid.downcase}/",
+          repos    => 'main',
+          key      => {
+            'id'     => '1A4C919DB987D435939638B914219A96E15E78F4',
+            'server' => 'keys.gnupg.net',
+          },
+          include  => {
+            'src' => false,
+            'deb' => true,
+          },
+        }
+        Apt::Source['apt_gitlabci'] -> Package[$package_name]
+        Exec['apt_update'] -> Package[$package_name]
       }
-    }
+      'RedHat': {
+        yumrepo { "runner_${package_name}":
+          ensure        => 'present',
+          baseurl       => "${repo_base_url}/runner/${package_name}/el/\$releasever/\$basearch",
+          descr         => "runner_${package_name}",
+          enabled       => '1',
+          gpgcheck      => '0',
+          gpgkey        => "${repo_base_url}/gpg.key",
+          repo_gpgcheck => '1',
+          sslcacert     => '/etc/pki/tls/certs/ca-bundle.crt',
+          sslverify     => '1',
+        }
 
-    if $::gitlab_ci_runner::install_package == true {
-      package { 'gitlab-ci-multi-runner':
-        ensure  => $version,
-        require => Yumrepo['runner_gitlab-ci-multi-runner'],
+        yumrepo { "runner_${package_name}-source":
+          ensure        => 'present',
+          baseurl       => "${repo_base_url}/runner/${package_name}/el/\$releasever/SRPMS",
+          descr         => "runner_${package_name}-source",
+          enabled       => '1',
+          gpgcheck      => '0',
+          gpgkey        => "${repo_base_url}/gpg.key",
+          repo_gpgcheck => '1',
+          sslcacert     => '/etc/pki/tls/certs/ca-bundle.crt',
+          sslverify     => '1',
+        }
+      }
+      default: {
+        fail ("gitlab_ci_runner::manage_repo parameter for ${::osfamily} is not supported.")
       }
     }
   }
-  else {
 
-    error('This module is only supported on RedHat flavoured linux')
+  package { $package_name:
+    ensure => $package_ensure,
 
   }
 }
