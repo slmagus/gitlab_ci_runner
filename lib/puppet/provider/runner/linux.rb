@@ -26,9 +26,13 @@ Puppet::Type.type(:runner).provide(:runner) do
     begin
       #gitlab_runner('register', '--non-interactive', '--url ', resource[:url], '--registration-token', resource[:token])
       if @resource[:executor] == 'docker'
-        cmd = "gitlab-runner register --non-interactive --name #{@resource[:name]} --url #{@resource[:url]} --registration-token #{@resource[:token]} --executor  #{@resource[:executor]} --docker-image #{@resource[:docker_image]} --tag-list #{@resource[:tags]}"
+        cmd = "gitlab-runner register --non-interactive --name #{@resource[:name]} --url #{@resource[:url]}
+        --registration-token #{@resource[:token]} --executor  #{@resource[:executor]} --docker-image #{@resource[:docker_image]}
+        --docker-privileged #{@resource[:privileged]} --docker-network-mode #{@resource[:network_mode]}
+        --docker-network-mode #{@resource[:volumes]} --tag-list #{@resource[:tags]}"
       else
-        cmd = "gitlab-runner register --non-interactive --name #{@resource[:name]} --url #{@resource[:url]} --registration-token #{@resource[:token]} --executor  #{@resource[:executor]} --tag-list #{@resource[:tags]} "
+        cmd = "gitlab-runner register --non-interactive --name #{@resource[:name]} --url #{@resource[:url]}
+        --registration-token #{@resource[:token]} --executor  #{@resource[:executor]} --tag-list #{@resource[:tags]} "
       end
       #Puppet.notice("Running command to create runner: #{cmd}")
       Open3.popen2(cmd) do |stdin, stderr,  wait_thr|
