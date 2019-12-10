@@ -27,7 +27,7 @@ group :test do
   gem 'mocha', '~> 1.4.0',                                          :require => false
   gem 'coveralls',                                                  :require => false
   gem 'simplecov-console',                                          :require => false
-  gem 'rack', '~> 1.0',                                             :require => false if RUBY_VERSION < '2.2.2'
+  gem 'rack', '>= 1.0',                                             :require => false if RUBY_VERSION < '2.2.2'
   gem 'parallel_tests', '2.24.0',                                   :require => false if RUBY_VERSION < '2.2.0'
   gem 'parallel_tests',                                             :require => false if RUBY_VERSION >= '2.2.0'
 end
